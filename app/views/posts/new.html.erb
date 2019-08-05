@@ -1,0 +1,11 @@
+<%= form_with(model: @post, local: true) do |f| %>
+<div>
+<%= f.file_field :postimg %>
+</div>
+
+<div>
+<%= f.text_area :content %>
+</div>
+
+<%= f.submit '投稿' %>
+<% end %>

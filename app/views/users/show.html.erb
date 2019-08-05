@@ -7,18 +7,25 @@
 </h3>
       </div>
       <div class="card-body">
-        <%= image_tag @user.profimg_url if @user.profimg.present? %>
+        <%= image_tag @user.profimg_url, { size: 300 } if @user.profimg.present? %>
 
       </div>
     </div>
   </aside>
   <div class="col-sm-8">
     <ul class="nav nav-tabs nav-justified mb-3">
-      <li class="nav-item"><a href="#" class="nav-link">投稿</a></li>
+      <li class="nav-item"><a href="
+      <%= user_path(@user) %>
+      " class="nav-link
+      <%= 'active' if current_page?(user_path(@user)) %>
+      ">投稿<span class="badge badge-secondary">
+        <%= @count_posts %>
+      </span></a></li>
       <li class="nav-item"><a href="#" class="nav-link">フォロー</a></li>
       <li class="nav-item"><a href="#" class="nav-link">フォロワー</a></li>
       <li class="nav-item"><a href="#" class="nav-link">お気に入り</a></li>
     </ul>
+    <%= render 'posts/posts', posts: @posts %>
   </div>
   <div><%= link_to '編集', edit_user_path(@user) %></div>
 </div>

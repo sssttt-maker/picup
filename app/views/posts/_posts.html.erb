@@ -1,0 +1,36 @@
+<ul class="list-unstyled">
+  
+<% posts.each do |post| %>
+
+    <li class="media mb-3">
+<%= image_tag post.user.profimg_url(:thumb) if post.user.profimg.present? %>
+      <div class="media-body">
+        <div>
+          
+<%= link_to post.user.name, user_path(post.user) %>
+ <span class="text-muted">posted at 
+<%= post.created_at %>
+</span>
+        </div>
+        <div>
+           <%= image_tag post.postimg_url(:thumb) if post.postimg.present? %>
+        </div>
+        <div>
+          <p>
+<%= post.content %>
+</p>
+        </div>
+        <div>
+            <% if current_user == post.user %>
+            <%= link_to '削除', post, method: :delete, data: { confirm: "You sure?" } %>
+            <% end %>
+        </div>
+      </div>
+    </li>
+  
+<% end %>
+
+  
+<%= paginate posts %>
+
+</ul>
