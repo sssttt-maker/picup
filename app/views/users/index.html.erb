@@ -1,1 +1,11 @@
+<% provide(:title, 'All users') %>
+<h1>All users</h1>
+
+<p>user search</p>
+<%= form_with(url: users_path, local: true, method: :get ) do |f| %>
+<% f.text_field :search %>
+<%= f.submit :Search %> 
+<% end %>
+
+
 <%= render 'users', users: @users %>
