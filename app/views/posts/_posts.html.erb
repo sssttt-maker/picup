@@ -3,7 +3,7 @@
 <% posts.each do |post| %>
 
     <li class="media mb-3">
-<%= image_tag post.user.profimg_url(:thumb) %>
+<%= image_tag post.user.profimg_url(:thumb), { size: 50 } %>
       <div class="media-body">
         <div>
           
