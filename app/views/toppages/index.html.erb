@@ -1,9 +1,5 @@
 <% if logged_in? %>
 
-  <p>ログイン完了ユーザ: 
-<%= current_user.name %>
-</p>
-
 <h1><%= link_to '投稿', new_post_path %></h1>
 <div>
   <%= render 'posts/posts', posts: @posts %> 

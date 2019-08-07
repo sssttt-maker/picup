@@ -25,6 +25,9 @@
             <%= link_to '削除', post, method: :delete, data: { confirm: "You sure?" } %>
             <% end %>
         </div>
+        <div>
+            <%= render 'favorites/like_button', post: post %>
+        </div>
       </div>
     </li>
   
