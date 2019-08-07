@@ -1,5 +1,65 @@
-<h1>投稿</h1>
+<div class="media mb-3">
+<%= image_tag @post.user.profimg_url(:thumb), { size: 50 } %>
+      <div class="media-body">
+        <div>
+          
+<%= link_to @post.user.name, user_path(@post.user) %>
+ <span class="text-muted">posted at 
+<%= @post.created_at %>
+</span>
+        </div>
+        <div>
+           <%= image_tag @post.postimg_url(:thumb) if @post.postimg.present? %>
+        </div>
+        <%= link_to post_path(@post), class: 'content_link' do %>
+        <div>
+            
+          <p>
+<%= @post.content %>
+</p>
 
-<p><%= image_tag @post.postimg_url(:thumb) if @post.postimg.present? %></p>
-<p><%= @post.content %></p>
+        </div>
+        <% end %>
+        <div>
+            <% if current_user == @post.user %>
+            <%= link_to '削除', @post, method: :delete, data: { confirm: "You sure?" } %>
+            <% end %>
+        </div>
+        <div>
+            <%= render 'favorites/like_button', post: @post %>
+        </div>
+        
+        <!-- -コメント -->
+        <% if @post.comments.any? %>
+            <% @comments.each do |comment| %>
+        <div>
+                <%= image_tag comment.user.profimg_url(:thumb), { size: 30 } %>
+      <div class="media-body">
+        <div>
+          
+            <%= link_to comment.user.name, user_path(comment.user) %>
+        <span class="text-muted">posted at 
+        <%= comment.created_at %>
+        </span>
+        </div>
+        <div>
+            <%= comment.comment_content %>
+        </div>
+        <% end %>
+        <% end %>
+        
+        <div>
+            <%= form_with(model: [@post, @post.comments.build], local: true) do |f| %>
+                <%= f.text_field :comment_content %>
+                <%= f.submit 'コメント' %>
+            <% end %>
+        </div>
+      </div>
+    </div>
+        
+    
+    </div>
+    </div>
+
+
 

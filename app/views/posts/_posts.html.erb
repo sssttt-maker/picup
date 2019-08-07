@@ -12,23 +12,33 @@
 <%= post.created_at %>
 </span>
         </div>
+        <%= link_to post_path(post), class: 'content_link' do %>
         <div>
            <%= image_tag post.postimg_url(:thumb) if post.postimg.present? %>
         </div>
         <div>
+            
           <p>
 <%= post.content %>
 </p>
+
         </div>
+        <% end %>
+        <% if post.comments.any? %>
+        <%= link_to '▼', post_path(post) %>
+        <% end %>
         <div>
             <% if current_user == post.user %>
             <%= link_to '削除', post, method: :delete, data: { confirm: "You sure?" } %>
             <% end %>
         </div>
+        
         <div>
             <%= render 'favorites/like_button', post: post %>
         </div>
-      </div>
+        
+        </div>
+        
     </li>
   
 <% end %>

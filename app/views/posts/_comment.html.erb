@@ -1,0 +1,21 @@
+
+<% if @post.comments.any? %>
+            <% @comments.each do |comment| %>
+        <div class="topppage_comment">
+                <%= image_tag comment.user.profimg_url(:thumb), { size: 30 } %>
+      <div class="media-body">
+        <div>
+          
+            <%= link_to comment.user.name, user_path(comment.user) %>
+        <span class="text-muted">posted at 
+        <%= comment.created_at %>
+        </span>
+        </div>
+        <div>
+            <%= comment.comment_content %>
+        </div>
+        <% end %>
+        <% end %>
+        </div>
+        
+        </div>

@@ -4,6 +4,7 @@ class PostsController < ApplicationController
   
   def show
     @post = Post.find(params[:id])
+    @comments = @post.comments
   end
 
   def new
@@ -27,8 +28,14 @@ class PostsController < ApplicationController
   def destroy
     @post.destroy
     flash[:success] = '投稿を削除しました。'
+    if request.referer&.include?(post_path(@post))
+      redirect_to root_path
+    else
     redirect_back(fallback_location: root_path)
   end
+  end
+  
+  private
   
   def post_params
     params.require(:post).permit(:content, :postimg)
