@@ -8,11 +8,8 @@
       </div>
       <div class="card-body">
 
-        <% if @user.profimg.present? %>
           <%= image_tag @user.profimg_url, { size: 300 } %>
-        <% else %>
-          <%= image_tag "/assets/default.png", { size: 300 } %>
-        <% end %>
+       
 
       </div>
     </div>
