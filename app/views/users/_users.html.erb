@@ -2,7 +2,11 @@
   <ul class="list-unstyled">
     <% users.each do |user| %>
       <li class="media">
-          <%= image_tag user.profimg_url(:thumb) if user.profimg.present? %>
+        <% if user.profimg.present? %>
+          <%= image_tag user.profimg_url(:thumb) %>
+        <% else %>
+          <%= image_tag "/assets/default.png", { size: 50 } %>
+        <% end %>
 
         <div class="media-body">
             

@@ -2,10 +2,11 @@
 <h1>All users</h1>
 
 <p>user search</p>
+<div id="nav-search">
 <%= form_with(url: users_path, local: true, method: :get ) do |f| %>
-<% f.text_field :search %>
+<%= f.text_field :search %>
 <%= f.submit :Search %> 
 <% end %>
-
+</div>
 
 <%= render 'users', users: @users %>

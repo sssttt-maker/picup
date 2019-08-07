@@ -44,6 +44,14 @@ class User < ApplicationRecord
         self.favposts.include?(post)
     end
     
+    def self.search(search)
+        if search
+            where(['name LIKE ?', "%#{search}%"])
+        else
+            all
+        end
+    end
+    
     def feed_posts
         Post.where(user_id: self.following_ids + [self.id])
     end

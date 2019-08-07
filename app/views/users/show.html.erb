@@ -7,13 +7,23 @@
 </h3>
       </div>
       <div class="card-body">
-        <%= image_tag @user.profimg_url, { size: 300 } if @user.profimg.present? %>
+        <% if @user.profimg.present? %>
+          <%= image_tag @user.profimg_url, { size: 300 } %>
+        <% else %>
+          <%= image_tag "/assets/default.png", { size: 300 } %>
+        <% end %>
 
       </div>
     </div>
     
     <%= render 'relationships/follow_button', user: @user %>
+    <div>
+      <% if current_user == @user %>
+        <%= link_to '編集', edit_user_path(@user) %>
+      <% end %>
+    </div>
   </aside>
+  
   <div class="col-sm-8">
     <ul class="nav nav-tabs nav-justified mb-3">
       <li class="nav-item"><a href="
@@ -51,5 +61,5 @@
     
     <%= render 'posts/posts', posts: @posts %>
   </div>
-  <div><%= link_to '編集', edit_user_path(@user) %></div>
+  
 </div>
